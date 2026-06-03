@@ -1,4 +1,4 @@
 # Simple-Persian-Calender-Clock
-Here You can have an accses to this calender:)
-This app made for cat person🐈
-TEST YOUR LUCK!
+This app made for cat persons🐈
+
+TEST YOUR LUCK IN THE APP!
