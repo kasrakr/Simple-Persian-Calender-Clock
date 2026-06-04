@@ -6,18 +6,34 @@ from PIL import Image, ImageTk
 from io import BytesIO
 
 def update():
-    current = datetime.datetime.now().strftime("%H:%M:%S")
-    label_clock.config(text=current)
-    current1 = jdatetime.datetime.now().strftime("%Y/%m/%d")
-    label_date_shamsi.config(text=current1)
-    current2 = datetime.datetime.now().strftime("%Y/%m/%d")
-    label_date_miladi.config(text=current2)
+    current_time = datetime.datetime.now().strftime("%H:%M:%S")
+    label_clock.config(text=current_time)
 
-    current =jdatetime.date.today().strftime("%A %d %B %Y")
-    label_date_f.config(text=current)
+    weekdays = [
+        "دوشنبه", "سه‌شنبه", "چهارشنبه",
+        "پنج‌شنبه", "جمعه", "شنبه", "یکشنبه"
+    ]
+
+    months = [
+        "فروردین", "اردیبهشت", "خرداد", "تیر",
+        "مرداد", "شهریور", "مهر", "آبان",
+        "آذر", "دی", "بهمن", "اسفند"
+    ]
+
+    current_miladi = datetime.datetime.now().strftime("%Y/%m/%d")
+    label_date_miladi.config(text=current_miladi)
+
+    now_j = jdatetime.datetime.now()
+    current_shamsi = f"{now_j.year}/{now_j.month:02d}/{now_j.day:02d}"
+    label_date_shamsi.config(text=current_shamsi)
+
+    weekday_name = weekdays[now_j.weekday()]
+    month_name = months[now_j.month - 1]
+
+    current_farsi = f"{weekday_name} {now_j.day} {month_name} {now_j.year}"
+    label_date_f.config(text=current_farsi)
 
     window.after(1000, update)
-
 
 def luck() :
     url = "https://api.thecatapi.com/v1/images/search"
@@ -40,7 +56,7 @@ window = tk.Tk()
 window.title("Persian Calender")
 window.geometry("500x500")
 window.configure(background="#0F172A")
-window.resizable(width=False, height=False)
+# window.resizable(width=False, height=False)
 icon = tk.PhotoImage(file="cat.png")
 window.iconphoto(True, icon)
 
@@ -60,7 +76,7 @@ label_clock.pack(pady=10)
 
 label_date_f = tk.Label(
     center_frame,
-    font=("Consolas", 15, "bold"),
+    font=("2  Fantezy", 25, "bold"),
     background="#0F172A",
     foreground="#F8FAFC",
 )
