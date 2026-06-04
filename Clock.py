@@ -4,6 +4,7 @@ import jdatetime
 import requests
 from PIL import Image, ImageTk
 from io import BytesIO
+from helpers import center_window, fit_image
 
 def update():
     current = datetime.datetime.now().strftime("%H:%M:%S")
@@ -30,15 +31,22 @@ def luck() :
     img = Image.open(img_data)
     img_window = tk.Toplevel(window)
     img_window.title("Mewo Image")
+    img_window.geometry("600x600")
+    img = fit_image(img, 800, 800)
     tk_img = ImageTk.PhotoImage(img)
     label = tk.Label(img_window, image=tk_img)
     label.image = tk_img
-    label.pack()
+    label.pack(expand=True, fill='both')
+    img_window.update_idletasks()
+    center_window(img_window, window)
+    img_window.focus_set()
+    img_window.bind("<Control-w>", lambda e: img_window.destroy())
 
 
 window = tk.Tk()
 window.title("Persian Calender")
 window.geometry("500x500")
+center_window(window,None)
 window.configure(background="#0F172A")
 window.resizable(width=False, height=False)
 icon = tk.PhotoImage(file="cat.png")
@@ -99,6 +107,8 @@ button_luck = tk.Button(
 )
 button_luck.pack(pady=10)
 
+window.focus_set()
+window.bind("<space>", lambda e : luck())
 
 update()
 window.mainloop()
