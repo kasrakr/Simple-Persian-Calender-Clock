@@ -1,21 +1,27 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 
-def center_window(parent, child):
-    parent.update_idletasks()
+def center_window(child, parent):
     child.update_idletasks()
-    parent_x = parent.winfo_x()
-    parent_y = parent.winfo_y()
-    parent_width = parent.winfo_width()
-    parent_height = parent.winfo_height()
     child_width = child.winfo_width()
     child_height = child.winfo_height()
     if child_width <= 1:
         child_width = child.winfo_reqwidth()
     if child_height <= 1:
         child_height = child.winfo_reqheight()
-    x = parent_x + (parent_width // 2) - (child_width // 2)
-    y = parent_y + (parent_height // 2) - (child_height // 2)
+    if parent is None:
+        screen_width = child.winfo_screenwidth()
+        screen_height = child.winfo_screenheight()
+        x = (screen_width - child_width) // 2
+        y = (screen_height - child_height) // 2
+    else:
+        parent.update_idletasks()
+        parent_x = parent.winfo_x()
+        parent_y = parent.winfo_y()
+        parent_width = parent.winfo_width()
+        parent_height = parent.winfo_height()
+        x = parent_x + (parent_width - child_width) // 2
+        y = parent_y + (parent_height - child_height) // 2
     child.geometry(f"+{x}+{y}")
 
 def fit_image(image, max_width, max_height):

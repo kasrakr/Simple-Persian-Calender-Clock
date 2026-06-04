@@ -4,6 +4,7 @@ import jdatetime
 import requests
 from PIL import Image, ImageTk
 from io import BytesIO
+from helpers import center_window, fit_image
 
 def update():
     current = datetime.datetime.now().strftime("%H:%M:%S")
@@ -39,6 +40,7 @@ def luck() :
 window = tk.Tk()
 window.title("Persian Calender")
 window.geometry("500x500")
+
 window.configure(background="#0F172A")
 window.resizable(width=False, height=False)
 icon = tk.PhotoImage(file="cat.png")
