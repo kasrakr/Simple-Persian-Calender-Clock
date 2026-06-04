@@ -107,6 +107,8 @@ button_luck = tk.Button(
 )
 button_luck.pack(pady=10)
 
+window.focus_set()
+window.bind("<space>", lambda e : luck())
 
 update()
 window.mainloop()
