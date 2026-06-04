@@ -84,7 +84,7 @@ label_clock.pack(pady=10)
 
 label_date_f = tk.Label(
     center_frame,
-    font=("2  Fantezy", 25, "bold"),
+    font=("Pinar-DS4-FD Bold", 25, "bold"),
     background="#0F172A",
     foreground="#F8FAFC",
 )
@@ -124,7 +124,7 @@ button_luck = tk.Button(
 button_luck.pack(pady=10)
 
 window.focus_set()
-window.bind("<space>", lambda e : luck())
-
+window.bind("<space>", lambda e: luck())
+window.bind("<Return>", lambda e: luck())
 update()
 window.mainloop()
