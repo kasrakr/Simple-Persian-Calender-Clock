@@ -40,6 +40,7 @@ def luck() :
     img_window.update_idletasks()
     center_window(img_window, window)
     img_window.focus_set()
+    img_window.bind("<Control-w>", lambda e: img_window.destroy())
 
 
 window = tk.Tk()
