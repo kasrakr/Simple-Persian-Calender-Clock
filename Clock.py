@@ -64,7 +64,7 @@ window.title("Persian Calender")
 window.geometry("500x500")
 center_window(window,None)
 window.configure(background="#0F172A")
-# window.resizable(width=False, height=False)
+window.resizable(width=False, height=False)
 icon = tk.PhotoImage(file="cat.png")
 window.iconphoto(True, icon)
 
